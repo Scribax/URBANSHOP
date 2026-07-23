@@ -31,4 +31,4 @@ COPY --from=builder /app/node_modules/@prisma/client ./node_modules/@prisma/clie
 
 EXPOSE 4000
 
-CMD ["npm", "run", "start:prod"]
+CMD ["sh", "-c", "npx prisma migrate deploy && npm run start:prod"]

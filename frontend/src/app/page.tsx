@@ -41,9 +41,9 @@ function HeroSection({ config }: HeroSectionProps) {
       <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-zinc-950 z-10" />
       <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/20 to-transparent z-10" />
 
-      {/* Concrete texture overlay */}
+      {/* Concrete texture overlay (hidden on mobile to save performance) */}
       <div
-        className="absolute inset-0 opacity-[0.04] z-10"
+        className="absolute inset-0 opacity-[0.04] z-10 hidden md:block"
         style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
         }}
@@ -145,28 +145,34 @@ function HeroSection({ config }: HeroSectionProps) {
 }
 
 function DropBanner({ config }: { config: { marqueeTexts: string[] } }) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-100px' });
-
   return (
-    <section id="drops" ref={ref} className="py-4 bg-white overflow-hidden">
-      <motion.div
-        animate={isInView ? { x: [0, -1200] } : {}}
-        transition={{ duration: 25, ease: 'linear', repeat: Infinity }}
-        className="flex gap-16 whitespace-nowrap"
-      >
-        {[...Array(4)].map((_, i) => (
-          <span key={i} className="flex gap-16 items-center">
-            {config.marqueeTexts.map((text, j) => (
-              <React.Fragment key={j}>
-                <span className="font-display text-black text-sm tracking-[0.2em] uppercase">{text}</span>
-                {j < config.marqueeTexts.length - 1 && <span className="font-display text-black text-sm">★</span>}
-              </React.Fragment>
-            ))}
-            {i < 3 && <span className="font-display text-black text-sm">★</span>}
-          </span>
-        ))}
-      </motion.div>
+    <section id="drops" className="py-4 bg-white overflow-hidden select-none">
+      <div className="flex whitespace-nowrap overflow-hidden">
+        <div className="animate-marquee flex gap-16 pr-16 items-center">
+          {config.marqueeTexts.map((text, j) => (
+            <React.Fragment key={j}>
+              <span className="font-display text-black text-sm tracking-[0.2em] uppercase">{text}</span>
+              <span className="font-display text-black text-sm">★</span>
+            </React.Fragment>
+          ))}
+        </div>
+        <div className="animate-marquee flex gap-16 pr-16 items-center" aria-hidden="true">
+          {config.marqueeTexts.map((text, j) => (
+            <React.Fragment key={j}>
+              <span className="font-display text-black text-sm tracking-[0.2em] uppercase">{text}</span>
+              <span className="font-display text-black text-sm">★</span>
+            </React.Fragment>
+          ))}
+        </div>
+        <div className="animate-marquee flex gap-16 pr-16 items-center" aria-hidden="true">
+          {config.marqueeTexts.map((text, j) => (
+            <React.Fragment key={j}>
+              <span className="font-display text-black text-sm tracking-[0.2em] uppercase">{text}</span>
+              <span className="font-display text-black text-sm">★</span>
+            </React.Fragment>
+          ))}
+        </div>
+      </div>
     </section>
   );
 }

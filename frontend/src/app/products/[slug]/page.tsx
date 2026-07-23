@@ -10,7 +10,7 @@ import { motion } from 'framer-motion';
 import { Heart, ChevronLeft, Plus, Minus, ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000';
+const API_URL = process.env.NEXT_PUBLIC_API_URL || '';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },

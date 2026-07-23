@@ -8,7 +8,7 @@ import { ArrowLeft, ArrowRight, CheckCircle2, ShoppingBag } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000';
+const API_URL = process.env.NEXT_PUBLIC_API_URL || '';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },

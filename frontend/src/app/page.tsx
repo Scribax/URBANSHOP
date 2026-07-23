@@ -78,7 +78,7 @@ function HeroSection({ config }: HeroSectionProps) {
           {/* Main headline — Typography is the hero */}
           <motion.h1
             variants={fadeUp}
-            className="font-display text-[clamp(4rem,14vw,12rem)] leading-[0.85] tracking-tight text-white uppercase mb-6"
+            className="font-display text-[clamp(3rem,9.5vw,8.5rem)] leading-[0.85] tracking-tight text-white uppercase mb-6"
           >
             {parts.length >= 3 ? (
               <>
